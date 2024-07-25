@@ -1,72 +1,57 @@
-# Cartesi DApp Front-end Template
+# Cartesi frontend web
 
-This project serves as a template for developing decentralized applications (DApps) using the Cartesi framework. It is designed to integrate seamlessly with Cartesi's off-chain computations while providing a user-friendly interface for interacting with the blockchain.
+```
+Cartesi Rollups version: 1.0.x
+```
 
 ## Features
 
-- **Onboard Integration**: Utilizes [Onboard.js](https://www.blocknative.com/onboard) for streamlined wallet connection and management, making it easy for users to log in with MetaMask and other popular wallets.
-- **Ethers.js Integration**: Leverages [Ethers.js](https://docs.ethers.io/v5/) for interacting with Ethereum contracts, enabling a wide range of blockchain operations directly from the frontend.
-- **Generic DApp Interaction**: The homepage is built to work with any Cartesi DApp, offering generic input functionality alongside pre-implemented deposit mechanisms for assets such as Ether, ERC20 tokens, and ERC721 tokens.
-- **Voucher Execution**: Supports the execution of vouchers, further integrating the DApp with Cartesi's off-chain computations.
-- **Asset Management**: An assets page equipped with features for transferring and withdrawing assets, compatible with examples from npm `cartesi-wallet` and the Python package `cartesi-wallet`. These can be explored in the repositories:
-  - Node.js: [cartesi-asset-examples](https://github.com/jplgarcia/cartesi-asset-examples)
-  - Python: [python-wallet](https://github.com/jplgarcia/python-wallet)
-- **Sunodo Integration**: Default addresses are set for Sunodo, simplifying the setup for developers:
-  - DApp Address: `0x70ac08179605AF2D9e75782b8DEcDD3c22aA4D0C`
-  - DApp Relay Address: `0xF5DE34d6BbC0446E2a45719E718efEbaaE179daE`
-  - Input Address: `0x59b22D57D4f067708AB0c00552767405926dc768`
-  - Ether Portal Address: `0xFfdbe43d4c855BF7e0f105c400A50857f53AB044`
-  - ERC20 Portal Address: `0x9C21AEb2093C32DDbC53eEF24B873BDCd1aDa1DB`
-  - ERC721 Portal Address: `0x237F8DD094C0e47f4236f12b4Fa01d6Dae89fb87`
-  - Sunodo Token Address: `0xae7f61eCf06C65405560166b259C54031428A9C4`
+With this project you can test some interactions with the Cartesi Rollups project:
 
-## Configuration
+1. Metamask integration
+2. Send Inspect state Requests and Listing Reports response
+3. Sending Dapp Address with the DApp Relay
+4. Sending inputs
+5. Depositing Ether
+6. Depositing ERC20
+7. Depositing ERC721
+8. Depositing ERC1155 Single
+9. Depositing ERC1155 Batch
+10. Listing Notices
+11. Listing Reports
+12. Listing Vouchers
+13. Executing Vouchers
 
-To customize blockchain interactions, modify the configuration in `src/app/service/ethereum.service.ts`. This includes changing wallet addresses and adjusting contract interactions as needed for your DApp.
+## Configurtion
 
-## Inspect and GraphQL Calls
+Edit src/config.json to set the testnet parameters and deployment, inspect, graphql, rpc addresses.
 
-- **Inspect Calls**: For blockchain inspect calls, check `src/app/service/http.service.ts`, which uses Axios for HTTP GET requests. The default URL is set for Sunodo: `http://localhost:8080/inspect/`.
-- **GraphQL Calls**: Located in `src/app/service/graphql.service.ts`, this service provides predefined GraphQL queries using URQL, such as fetching reports, notices, vouchers, and executing specific vouchers. Voucher execution logic is handled in `ethereum.service`.
+## Available Scripts
 
-## Getting Started
+In the project directory, run:
 
-To run the application:
+```shell
+yarn
+yarn codegen
+```
 
-1. Install dependencies with `npm install`.
-2. Start the Angular development server with `ng serve` if you have [angular-cli](https://www.npmjs.com/package/@angular/cli) installed. Otherwise run it with npm start.
-3. Open `http://localhost:4200/` in your browser to view the DApp.
+to build the app.
 
-## Contribution
+```shell
+yarn start
+```
 
-Feel free to contribute to the repository by submitting pull requests or creating issues for bugs and feature requests.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
----
+## Voucher Notes
 
-## Angular info
+To execute Vouchers, the voucher epoch must be finalized so the rollups framework generate the proofs.
+As a reminder, you can advance time in hardhat with the command:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.1.
+```shell
+curl --data '{"id":1337,"jsonrpc":"2.0","method":"evm_increaseTime","params":[864010]}' http://localhost:8545
+```
 
-## Development server
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lynoferraz/frontend-web-cartesi)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
