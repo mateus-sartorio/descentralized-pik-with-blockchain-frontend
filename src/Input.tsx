@@ -10,7 +10,7 @@ interface IInputPropos {
 export const Input: React.FC<IInputPropos> = (propos) => {
   const rollups = useRollups(propos.dappAddress);
   const [connectedWallet] = useWallets();
-  const provider = new ethers.providers.Web3Provider(connectedWallet.provider);
+  new ethers.providers.Web3Provider(connectedWallet.provider);
 
   const addInput = async (str: string) => {
     if (rollups) {
