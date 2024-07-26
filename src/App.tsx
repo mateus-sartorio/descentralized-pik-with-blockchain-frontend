@@ -4,13 +4,10 @@ import { init } from "@web3-onboard/react";
 import { useState } from "react";
 
 import { GraphQLProvider } from "./GraphQL";
-import { Notices } from "./Notices";
-import { Input } from "./Input";
-import { Inspect } from "./Inspect";
+import { Input } from "./components/Input/Input";
 import { Network } from "./Network";
-import { Vouchers } from "./Vouchers";
-import { Reports } from "./Reports";
 import configFile from "./config.json";
+import { Infobar } from "./components/Infobar/Infobar";
 
 const config: any = configFile;
 
@@ -29,36 +26,27 @@ init({
 });
 
 const App: FC = () => {
-  const [dappAddress, setDappAddress] = useState<string>("0xab7528bb862fb57e8a2bcd567a2e929a0be56a5e");
+  const [ dappAddress, setDappAddress ] = useState<string>("0xab7528bb862fb57e8a2bcd567a2e929a0be56a5e");
 
   return (
     <div>
+      <br />
+
       <Network />
+
+      <br />
+
       <GraphQLProvider>
-        <div>
-          Dapp Address: <input
-            type="text"
-            value={dappAddress}
-            onChange={(e) => setDappAddress(e.target.value)}
-          />
-          <br />
-          <br />
-        </div>
+        <Infobar
+          dappAddress={dappAddress}
+          setDappAddress={setDappAddress}
+        />
+
+        <br />
         
-        {/* <h2>Inspect</h2>
-        <Inspect /> */}
-        
-        <h2>Input</h2>
         <Input dappAddress={dappAddress} />
-        
-        {/* <h2>Reports</h2>
-        <Reports /> */}
-        
-        {/* <h2>Notices</h2>
-        <Notices /> */}
-        
-        {/* <h2>Vouchers</h2>
-        <Vouchers dappAddress={dappAddress} /> */}
+
+        <br />
       </GraphQLProvider>
     </div>
   );
