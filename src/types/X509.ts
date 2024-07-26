@@ -12,7 +12,7 @@ export interface X509 {
     publicKeyAlgorithm: string;
     subjectPublicKey: string;
   };
-  issuerUniqueIdenfier?: string;
+  issuerUniqueIdentifier?: string;
   subjectUniqueIdentifier?: string;
   extensions?: any
 }
