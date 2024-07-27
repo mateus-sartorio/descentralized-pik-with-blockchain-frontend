@@ -1,22 +1,50 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse, faMoneyCheck, faRightFromBracket, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 interface SidebarProps {
+  isOpen: boolean;
+  toggleSidebar: () => void;
+}
 
-};
-
-const Sidebar: React.FC<SidebarProps> = (props) => {
-  const pageName = "Home";
-  const userName = "Taxad";
-  
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
   return (
-    <div className={`fixed inset-0 bg-gray-800 bg-opacity-75 transition-transform transform ${true ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:relative md:bg-transparent md:transform-none z-50`}>
-      <div className="w-64 bg-gray-900 h-full text-white">
-        <nav className="flex flex-col p-4">
-          <Link to="/" className="mb-2" onClick={() => {}}>Home Page</Link>
-          <Link to="/create" className="mb-2" onClick={() => {}}>Create Page</Link>
-          <button className="mt-auto p-2 bg-red-600 rounded" onClick={() => { /* Handle disconnect logic */ }}>Disconnect</button>
+    <div className={`fixed inset-y-0 left-0 w-64 bg-gray-900 text-white transition-transform transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} z-30`} style={{ marginTop: '4rem' }}>
+      <div className="h-full flex flex-col justify-between">
+        <nav className="flex flex-col p-4 space-y-4">
+          <Link
+            to="/"
+            onClick={toggleSidebar}
+            className="flex items-center space-x-2 cursor-pointer text-lg hover:text-gray-400"
+          >
+            <FontAwesomeIcon icon={faHouse} />
+            <p>Home</p>
+          </Link>
+
+          <Link
+            to="/create"
+            onClick={toggleSidebar}
+            className="flex items-center space-x-2 cursor-pointer text-lg hover:text-gray-400"
+          >
+            <FontAwesomeIcon icon={faMoneyCheck} />
+            <p>Create Certificate</p>
+          </Link>
+
+          <Link
+            to="/about"
+            onClick={toggleSidebar}
+            className="flex items-center space-x-2 cursor-pointer text-lg hover:text-gray-400"
+          >
+            <FontAwesomeIcon icon={faCircleInfo} />
+            <p>About</p>
+          </Link>
         </nav>
+
+        <div className="flex items-center justify-center space-x-2 py-2 mx-4 mb-4 bg-red-600 rounded-md cursor-pointer hover:bg-red-500" onClick={() => { /* Handle disconnect logic */ }}>
+          <FontAwesomeIcon icon={faRightFromBracket} />
+          <p className="text-lg">Disconnect Wallet</p>
+        </div>
       </div>
     </div>
   );
