@@ -12,6 +12,7 @@ import {
 
 import HomePage from "./pages/HomePage";
 import CreateCertificatePage from "./pages/CreateCertificatePage";
+import AboutPage from "./pages/AboutPage";
 import ErrorPage from "./pages/ErrorPage";
 import Layout from "./pages/Layout";
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/create",
         element: <CreateCertificatePage/>
+      },
+      {
+        path: "/about",
+        element: <AboutPage/>
       },
 
     ]
