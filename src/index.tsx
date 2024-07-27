@@ -13,20 +13,25 @@ import {
 import HomePage from "./pages/HomePage";
 import CreateCertificatePage from "./pages/CreateCertificatePage";
 import ErrorPage from "./pages/ErrorPage";
+import Layout from "./pages/Layout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage/>,
+    element: <Layout/>,
+    errorElement: <ErrorPage/>,
+    children: [
+      {
+        index: true,
+        element: <HomePage/>
+      },
+      {
+        path: "/create",
+        element: <CreateCertificatePage/>
+      },
+
+    ]
   },
-  {
-    path: "/create",
-    element: <CreateCertificatePage/>
-  },
-  {
-    path: "*",
-    element: <ErrorPage/>
-  }
 ]);
 
 const container = document.getElementById('root');
