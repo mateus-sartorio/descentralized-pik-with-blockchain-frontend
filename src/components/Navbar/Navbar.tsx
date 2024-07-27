@@ -3,25 +3,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faUser } from '@fortawesome/free-solid-svg-icons';
 
 interface NavbarProps {
-
+  toggleSidebar: () => void;
 };
 
-const Navbar: React.FC<NavbarProps> = (props) => {
+const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
   const pageName = "Home";
   const userName = "Taxad";
   
   return (
-    <nav className="bg-gray-800 text-white p-4 flex justify-between items-center">
+    <nav className="fixed w-full bg-gray-800 text-white px-8 flex justify-between items-center h-16 my-auto">
       <div className="flex items-center">
         <button className="text-white mr-4">
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            {/* <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path> */}
-            <FontAwesomeIcon icon={faBars} />
-          </svg>
+          <FontAwesomeIcon icon={faBars} onClick={toggleSidebar}/>
         </button>
         <span className="text-xl font-bold">{pageName}</span>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center cursor-pointer">
         <span className="mr-4">{userName}</span>
         <FontAwesomeIcon icon={faUser} />
       </div>
