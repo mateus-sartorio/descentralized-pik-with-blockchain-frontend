@@ -1,0 +1,12 @@
+.container {
+  transition: filter 0.1s ease;
+
+  &:hover {
+    filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(70%) contrast(100%);
+  }
+}
+
+.cartesi-logo {
+  filter: invert(100%);
+  width: 1.2rem;
+}
