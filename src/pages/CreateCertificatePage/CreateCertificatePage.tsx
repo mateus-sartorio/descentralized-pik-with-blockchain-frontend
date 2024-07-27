@@ -3,11 +3,11 @@ import injectedModule from "@web3-onboard/injected-wallets";
 import { init } from "@web3-onboard/react";
 import { useState } from "react";
 
-import { GraphQLProvider } from "../GraphQL";
-import { Input } from "../components/Input/Input";
-import { Network } from "../Network";
-import configFile from "../config.json";
-import { Infobar } from "../components/Infobar/Infobar";
+import { GraphQLProvider } from "../../GraphQL";
+import { Input } from "../../components/Input/Input";
+import { Network } from "../../Network";
+import configFile from "../../config.json";
+import { Infobar } from "../../components/Infobar/Infobar";
 
 const config: any = configFile;
 

@@ -10,11 +10,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import HomePage from "./pages/HomePage";
-import CreateCertificatePage from "./pages/CreateCertificatePage";
-import AboutPage from "./pages/AboutPage";
-import ErrorPage from "./pages/ErrorPage";
-import Layout from "./pages/Layout";
+import HomePage from "./pages/HomePage/HomePage";
+import CreateCertificatePage from "./pages/CreateCertificatePage/CreateCertificatePage";
+import AboutPage from "./pages/AboutPage/AboutPage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import Layout from "./pages/Layout/Layout";
 
 const router = createBrowserRouter([
   {
