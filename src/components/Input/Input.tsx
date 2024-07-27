@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ethers } from "ethers";
 import { useRollups } from "../../useRollups";
 import { useWallets } from "@web3-onboard/react";
-import { X509 } from "../../types/X509";
+import { X509 } from "../../models/X509";
 import nacl from 'tweetnacl';
 import naclUtil from 'tweetnacl-util';
 import { v4 as uuidv4 } from 'uuid';
