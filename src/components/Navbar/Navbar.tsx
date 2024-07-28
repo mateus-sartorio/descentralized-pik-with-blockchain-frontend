@@ -1,14 +1,34 @@
-import React from "react";
+import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 interface NavbarProps {
   toggleSidebar: () => void;
 };
 
 const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   const pageName = "Home";
   const userName = "Taxad";
+
+  const handleDropdownToggle = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setIsDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
   
   return (
     <nav className="fixed w-full bg-gray-800 text-white px-8 flex justify-between items-center h-16 my-auto">
@@ -18,9 +38,21 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
         </button>
         <span className="text-xl font-bold">{pageName}</span>
       </div>
-      <div className="flex items-center cursor-pointer">
+      <div className="flex items-center cursor-pointer" onClick={handleDropdownToggle} ref={dropdownRef}>
         <span className="mr-4">{userName}</span>
         <FontAwesomeIcon icon={faUser} />
+
+        {isDropdownOpen && (
+          <div className="absolute right-2 top-16 mt-2 rounded-md shadow-lg py-2 z-50 bg-gray-800">
+            <button 
+              className="w-full text-sm text-center px-4 py-2 text-white hover:bg-gray-700 flex items-center justify-center gap-2" 
+              onClick={() => { /* Handle disconnect logic */ }}
+            >
+              <FontAwesomeIcon icon={faRightFromBracket} />
+              <p className="text-sm">Disconnect Wallet</p>
+            </button>
+          </div>
+        )}
       </div>
     </nav>
   );
