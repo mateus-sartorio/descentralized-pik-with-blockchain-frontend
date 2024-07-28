@@ -8,6 +8,7 @@ import { createRoot } from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider,
+  Navigate
 } from "react-router-dom";
 
 import Layout from "./pages/Layout/Layout";
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Navigate to="/login" />
+      },
+      {
+        path: "home",
         element: <HomePage/>
       },
       {

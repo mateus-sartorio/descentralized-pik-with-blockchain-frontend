@@ -1,12 +1,28 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoneyCheck } from '@fortawesome/free-solid-svg-icons';
 import { Network } from "../../components/Network/Network";
+import { useConnectWallet, useSetChain } from "@web3-onboard/react";
+import configFile from "../../config.json";
+import { useNavigate } from 'react-router-dom';
+
+const config: any = configFile;
 
 const LoginPage: React.FC = () => {
+  const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
+  const [{ chains, connectedChain, settingChain }, setChain] = useSetChain();
+
+  const navigate = useNavigate();
+  
   const generateRandomNumber = (): number => {
     return Math.floor(Math.random() * 6) + 1;
   }
+
+  useEffect(() => {
+    if(wallet) {
+      navigate("/home");
+    }
+  }, []);
 
   return (
     <div className="relative h-screen w-full">

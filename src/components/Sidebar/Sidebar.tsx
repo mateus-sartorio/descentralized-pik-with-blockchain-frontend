@@ -24,7 +24,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
       <div className="h-full flex flex-col justify-between">
         <nav className="flex flex-col p-4 space-y-4">
           <Link
-            to="/"
+            to="/home"
             onClick={toggleSidebar}
             className="flex items-center space-x-2 cursor-pointer text-lg hover:text-gray-400"
           >
