@@ -1,12 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { useConnectWallet, useSetChain } from "@web3-onboard/react";
+import configFile from "../../config.json";
+import { useNavigate } from 'react-router-dom';
+
+const config: any = configFile;
 
 interface NavbarProps {
   toggleSidebar: () => void;
 };
 
 const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
+  const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
+  const [{ chains, connectedChain, settingChain }, setChain] = useSetChain();
+
+  const navigate = useNavigate();
+
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -46,7 +56,10 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
           <div className="absolute right-2 top-16 mt-2 rounded-md shadow-lg py-2 z-50 bg-gray-800">
             <button 
               className="w-full text-sm text-center px-4 py-2 text-white hover:bg-gray-700 flex items-center justify-center gap-2" 
-              onClick={() => { /* Handle disconnect logic */ }}
+              onClick={async () => {
+                await disconnect(wallet!);
+                navigate('/login');
+              }}
             >
               <FontAwesomeIcon icon={faRightFromBracket} />
               <p className="text-sm">Disconnect Wallet</p>
