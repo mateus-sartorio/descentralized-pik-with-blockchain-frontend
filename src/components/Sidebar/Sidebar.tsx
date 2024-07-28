@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faMoneyCheck, faRightFromBracket, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faMoneyCheck, faRightFromBracket, faCircleInfo, faGear } from '@fortawesome/free-solid-svg-icons';
 import { useConnectWallet, useSetChain } from "@web3-onboard/react";
 import configFile from "../../config.json";
 import { useNavigate } from 'react-router-dom';
@@ -39,6 +39,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
           >
             <FontAwesomeIcon icon={faMoneyCheck} />
             <p>Create Certificate</p>
+          </Link>
+
+          <Link
+            to="/settings"
+            onClick={toggleSidebar}
+            className="flex items-center space-x-2 cursor-pointer text-lg hover:text-gray-400"
+          >
+            <FontAwesomeIcon icon={faGear} />
+            <p>Settings</p>
           </Link>
 
           <Link

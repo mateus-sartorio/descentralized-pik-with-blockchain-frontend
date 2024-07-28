@@ -9,7 +9,7 @@ export const Infobar: React.FC<InfobarProps> = (props) => {
   const { dappAddress, setDappAddress } = props;
 
   return (
-    <div className="bg-white p-4 border border-gray-200 rounded-lg shadow-sm max-w-lg mx-auto">
+    <div className="bg-white py-4 px-6 border border-gray-200 rounded-lg shadow-sm w-full max-w-lg mx-auto">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">Dapp Address</h2>
       <input
         type="text"

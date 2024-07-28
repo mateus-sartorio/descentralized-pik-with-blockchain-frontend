@@ -13,7 +13,7 @@ export const Network: FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white p-6 border border-gray-200 rounded-lg shadow-md w-full max-w-lg mx-auto">
+    <div className="bg-white px-6 py-4 border border-gray-200 rounded-lg shadow-md w-full max-w-lg mx-auto">
       {!wallet && (
         <>
           <img
@@ -34,7 +34,9 @@ export const Network: FC = () => {
         </>
       )}
       {wallet && (
-        <div className="mt-4">
+        <div>
+          <h2 className="text-xl font-semibold text-gray-800 mb-4">Wallet connection</h2>
+
           <label className="block text-gray-700 text-sm font-medium mb-2">Switch Chain</label>
           {settingChain ? (
             <span className="block text-gray-600 text-sm">Switching chain...</span>

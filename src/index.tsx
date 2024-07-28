@@ -14,6 +14,7 @@ import {
 import Layout from "./pages/Layout/Layout";
 import HomePage from "./pages/HomePage/HomePage";
 import CreateCertificatePage from "./pages/CreateCertificatePage/CreateCertificatePage";
+import SettingsPage from "./pages/SettingsPage/SettingsPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/create",
         element: <CreateCertificatePage/>
+      },
+      {
+        path: "/settings",
+        element: <SettingsPage/>
       },
       {
         path: "/about",
