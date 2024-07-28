@@ -30,23 +30,8 @@ const CreateCertificatePage: React.FC = () => {
 
   return (
     <div>
-      <br />
-
-      <Network />
-
-      <br />
-
       <GraphQLProvider>
-        <Infobar
-          dappAddress={dappAddress}
-          setDappAddress={setDappAddress}
-        />
-
-        <br />
-        
         <Input dappAddress={dappAddress} />
-
-        <br />
       </GraphQLProvider>
     </div>
   );
