@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { GraphQLProvider } from "./GraphQL";
 import { Input } from "./components/Input/Input";
-import { Network } from "./Network";
+import { Network } from "./components/Network/Network";
 import configFile from "./config.json";
 import { Infobar } from "./components/Infobar/Infobar";
 
