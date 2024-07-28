@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import React from "react";
-import { useReportsQuery } from "./generated/graphql";
+import { useReportsQuery } from "../../generated/graphql";
 
 type Report = {
   id: string;

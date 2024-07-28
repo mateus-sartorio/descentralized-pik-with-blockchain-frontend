@@ -2,7 +2,7 @@ import { useSetChain } from "@web3-onboard/react";
 import { useMemo } from "react";
 import { Client, createClient, Provider } from "urql";
 
-import configFile from "./config.json";
+import configFile from "../../config.json";
 
 const config: any = configFile;
 

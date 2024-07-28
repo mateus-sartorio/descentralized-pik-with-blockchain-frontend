@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import React from "react";
-import { useNoticesQuery } from "./generated/graphql";
+import { useNoticesQuery } from "../../generated/graphql";
 
 type Notice = {
   id: string;

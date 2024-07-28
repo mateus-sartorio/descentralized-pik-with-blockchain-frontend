@@ -1,7 +1,7 @@
 import { BigNumber, ethers } from "ethers";
 import React, { useEffect } from "react";
-import { useVouchersQuery, useVoucherQuery } from "./generated/graphql";
-import { useRollups } from "./useRollups";
+import { useVouchersQuery, useVoucherQuery } from "../../generated/graphql";
+import { useRollups } from "../../useRollups";
 
 type Voucher = {
   id: string;
