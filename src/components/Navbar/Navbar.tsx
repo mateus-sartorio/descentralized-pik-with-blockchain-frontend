@@ -8,10 +8,11 @@ import { useNavigate } from 'react-router-dom';
 const config: any = configFile;
 
 interface NavbarProps {
+  pageName: string;
   toggleSidebar: () => void;
 };
 
-const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
+const Navbar: React.FC<NavbarProps> = ({ pageName, toggleSidebar }) => {
   const [{ wallet, connecting }, connect, disconnect] = useConnectWallet();
   const [{ chains, connectedChain, settingChain }, setChain] = useSetChain();
 
@@ -20,7 +21,6 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const pageName = "Home";
   const userName = "Taxad";
 
   const handleDropdownToggle = () => {
