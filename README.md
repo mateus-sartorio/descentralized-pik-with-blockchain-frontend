@@ -1,4 +1,4 @@
-# Cartesi frontend web
+# Certificate Hub Front End
 
 ```
 Cartesi Rollups version: 1.0.x
