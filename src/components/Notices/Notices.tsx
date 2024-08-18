@@ -14,7 +14,7 @@ export const Notices: React.FC = () => {
   const { data, fetching, error } = result;
 
   if (fetching) return <p>Loading...</p>;
-  if (error) return <p>Oh no... {error.message}</p>;
+  if (error) return <p>Oh no... Looks like we are having some problems to reach the Cartesi backend...</p>;
 
   if (!data || !data.notices) return <p>No notices</p>;
 

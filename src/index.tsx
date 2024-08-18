@@ -1,22 +1,21 @@
-import React from "react";
-
 import './index.scss';
 
-import { createRoot } from 'react-dom/client';
-
 import {
-  createBrowserRouter,
+  Navigate,
   RouterProvider,
-  Navigate
+  createBrowserRouter
 } from "react-router-dom";
 
-import Layout from "./pages/Layout/Layout";
-import HomePage from "./pages/HomePage/HomePage";
-import CreateCertificatePage from "./pages/CreateCertificatePage/CreateCertificatePage";
-import SettingsPage from "./pages/SettingsPage/SettingsPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import CertificatePage from "./pages/CertificatePage/CertificatePage";
+import CreateCertificatePage from "./pages/CreateCertificatePage/CreateCertificatePage";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
+import HomePage from "./pages/HomePage/HomePage";
+import Layout from "./pages/Layout/Layout";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import React from "react";
+import SettingsPage from "./pages/SettingsPage/SettingsPage";
+import { createRoot } from 'react-dom/client';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <AboutPage/>
+      },
+      {
+        path: "/certificate/:id",
+        element: <CertificatePage/>
       },
     ]
   },

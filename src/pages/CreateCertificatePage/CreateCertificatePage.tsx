@@ -1,13 +1,10 @@
-import { FC } from "react";
 import injectedModule from "@web3-onboard/injected-wallets";
 import { init } from "@web3-onboard/react";
 import { useState } from "react";
 
 import { GraphQLProvider } from "../../components/GraphQL/GraphQL";
 import { Input } from "../../components/Input/Input";
-import { Network } from "../../components/Network/Network";
 import configFile from "../../config.json";
-import { Infobar } from "../../components/Infobar/Infobar";
 
 const config: any = configFile;
 
@@ -26,7 +23,7 @@ init({
 });
 
 const CreateCertificatePage: React.FC = () => {
-  const [ dappAddress, setDappAddress ] = useState<string>("0xab7528bb862fb57e8a2bcd567a2e929a0be56a5e");
+  const [ dappAddress ] = useState<string>("0xab7528bb862fb57e8a2bcd567a2e929a0be56a5e");
 
   return (
     <div>

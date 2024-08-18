@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faUser, faRightFromBracket, faGear } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faGear, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 import { useConnectWallet, useSetChain } from "@web3-onboard/react";
+import { useEffect, useRef, useState } from "react";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import configFile from "../../config.json";
 import { useNavigate } from 'react-router-dom';
 
@@ -21,7 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageName, toggleSidebar }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const userName = "Taxad";
+  const userName = "Mateus";
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -41,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageName, toggleSidebar }) => {
   }, []);
   
   return (
-    <nav className="fixed w-full bg-gray-800 text-white px-8 flex justify-between items-center h-16 my-auto">
+    <nav className="fixed w-full bg-gray-800 text-white px-8 flex justify-between items-center h-16 my-auto z-50">
       <div className="flex items-center">
         <button className="text-white mr-4">
           <FontAwesomeIcon icon={faBars} onClick={toggleSidebar}/>
@@ -56,6 +57,14 @@ const Navbar: React.FC<NavbarProps> = ({ pageName, toggleSidebar }) => {
           <div className="absolute right-2 top-16 mt-2 rounded-md shadow-lg py-2 z-50 bg-gray-800">
             <button 
               className="w-full text-sm text-center px-4 py-2 text-white hover:bg-gray-700 flex items-center gap-2" 
+              onClick={() => navigate('/settings')}
+            >
+              <FontAwesomeIcon icon={faGear} />
+              <p className="text-sm">Settings</p>
+            </button>
+            
+            <button 
+              className="w-full text-sm text-center px-4 py-2 text-white hover:bg-gray-700 flex items-center gap-2" 
               onClick={async () => {
                 await disconnect(wallet!);
                 navigate('/login');
@@ -63,14 +72,6 @@ const Navbar: React.FC<NavbarProps> = ({ pageName, toggleSidebar }) => {
             >
               <FontAwesomeIcon icon={faRightFromBracket} />
               <p className="text-sm">Disconnect Wallet</p>
-            </button>
-
-            <button 
-              className="w-full text-sm text-center px-4 py-2 text-white hover:bg-gray-700 flex items-center gap-2" 
-              onClick={() => navigate('/settings')}
-            >
-              <FontAwesomeIcon icon={faGear} />
-              <p className="text-sm">Settings</p>
             </button>
           </div>
         )}
