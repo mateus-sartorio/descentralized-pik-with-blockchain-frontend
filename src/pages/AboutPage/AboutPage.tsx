@@ -4,9 +4,7 @@ const AboutPage: React.FC = () => {
   return (
     <div className="bg-gray-50 min-h-screen py-16 px-8">
       <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
-        {/* Header Section */}
         <div className="relative">
-          {/* Image Placeholder */}
           <img src={`${process.env.PUBLIC_URL}/images/ethereum.png`} alt="Blockchain Security" className="w-full h-64 object-cover" />
           <div className="absolute inset-0 bg-black opacity-50"></div>
           <div className="absolute inset-0 flex items-center justify-center">
@@ -14,7 +12,6 @@ const AboutPage: React.FC = () => {
           </div>
         </div>
         
-        {/* Content Section */}
         <div className="p-10 space-y-6">
           <p className="text-lg text-gray-700">
             Welcome to <strong>Certificate Hub</strong>, your go-to solution for managing X509 certificates in a decentralized and user-friendly environment. Our mission is to simplify the complexities of digital certification through a streamlined interface, allowing you to create and verify certificates without relying on centralized authorities.
