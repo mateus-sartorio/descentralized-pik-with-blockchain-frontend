@@ -69,13 +69,12 @@ const HomePage: React.FC = () => {
 
     console.log(responseData)
 
-    const jsonData = hexToString(responseData.reports[0].payload)
-    const objectData = JSON.parse(jsonData)
-
-    
-    const certificates = objectData.map((c: string) => cleanCertificate(c));
-    
     try {
+      const jsonData = hexToString(responseData.reports[0].payload)
+      const objectData = JSON.parse(jsonData)
+  
+      const certificates = objectData.map((c: string) => cleanCertificate(c));
+      
       const certificatesObject = certificates.map((c: any, index: number) => {
         return {
           id: index,
@@ -83,11 +82,12 @@ const HomePage: React.FC = () => {
           rawCertificate: c
         }
       });
+
       console.log(certificatesObject)
 
       setData(certificatesObject ?? []);
     }
-    catch (e) {
+    catch (e) { 
       return;
     }
   }
