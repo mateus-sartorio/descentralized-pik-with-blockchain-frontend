@@ -30,9 +30,12 @@ export const Input: React.FC<InputProps> = (props) => {
       { name: 'countryName', value: countryName },
     ];
 
-    const notBeforeDate = notBefore ? new Date(notBefore) : new Date();
-    const notAfterDate = notAfter ? new Date(notAfter) : new Date();
+    const notBeforeDate = notBefore ? new Date(`${notBefore}T00:00:00`) : new Date();
+    const notAfterDate = notAfter ? new Date(`${notAfter}T00:00:00`) : new Date();
     const daysUntilExpiration = getDaysDifference(notAfterDate, new Date());
+
+    console.log(notBefore, notAfter)
+    console.log(notBeforeDate, notAfterDate, daysUntilExpiration);
 
     const { cert } = selfsigned.generate(attrs, {
       keySize: 2048, // the size for the private key in bits (default: 1024)
