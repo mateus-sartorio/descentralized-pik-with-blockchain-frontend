@@ -5,7 +5,6 @@ import { getDaysDifference } from "../../utils/dates";
 import selfsigned from 'selfsigned';
 import { useRollups } from "../../useRollups";
 import { useWallets } from "@web3-onboard/react";
-import { v4 as uuidv4 } from 'uuid';
 
 export interface InputProps {
   dappAddress: string
@@ -13,6 +12,7 @@ export interface InputProps {
 
 export const Input: React.FC<InputProps> = (props) => {
   const { dappAddress } = props;
+
 
   const rollups = useRollups(dappAddress);
   const [connectedWallet] = useWallets();
@@ -41,11 +41,16 @@ export const Input: React.FC<InputProps> = (props) => {
       algorithm: 'sha256', // sign the certificate with specified algorithm (default: 'sha1')
     });
 
-    console.log(cert)
+    console.log(cert);
+
+    const input = {
+      action: "create",
+      payload: cert
+    };
 
     if (rollups) {
       try {
-        const payload = ethers.utils.toUtf8Bytes(JSON.stringify(cert));
+        const payload = ethers.utils.toUtf8Bytes(JSON.stringify(input));
         await rollups.inputContract.addInput(dappAddress, payload);
 
         setCommomName("");
