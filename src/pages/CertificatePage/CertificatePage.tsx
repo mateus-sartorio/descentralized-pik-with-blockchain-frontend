@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { faCopy, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GraphQLProvider } from '../../components/GraphQL/GraphQL';
 import Toast from '../../components/Toast/Toast';
 import { ethers } from 'ethers';
-import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router-dom';
 import { useRollups } from '../../useRollups';
 import { useWallets } from '@web3-onboard/react';
@@ -21,7 +21,9 @@ export interface CertificatePageProps {
 }
 
 const CertificatePage: React.FC = () => {
-  const [ dappAddress ] = useState<string>("0xab7528bb862fb57e8a2bcd567a2e929a0be56a5e");
+  const [dappAddress] = useState<string>("0xab7528bb862fb57e8a2bcd567a2e929a0be56a5e");
+
+  const [loading, setLoading] = useState(false);
 
   const location = useLocation();
   const { certificate } = location.state;
@@ -39,6 +41,8 @@ const CertificatePage: React.FC = () => {
   };
 
   const invalidateCertificate = async () => {
+    setLoading(true);
+
     if (rollups) {
       try {
         const input = {
@@ -49,12 +53,14 @@ const CertificatePage: React.FC = () => {
         console.log(input);
 
         const payload = ethers.utils.toUtf8Bytes(JSON.stringify(input));
-        
+
         await rollups.inputContract.addInput(dappAddress, payload);
       } catch (e) {
         console.log(`${e}`);
       }
     }
+
+    setLoading(false);
   };
 
   return (
@@ -124,17 +130,27 @@ const CertificatePage: React.FC = () => {
 
         <div className="mt-4 text-right">
           <button
-            className="bg-red-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-600"
+            className={`bg-red-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-600
+        focus:outline-none focus:ring-2 focus:ring-red-500 disabled:bg-gray-400 disabled:cursor-not-allowed
+        transform transition-all duration-300 ease-in-out
+        ${loading ? "scale-90" : "scale-100"}
+      `}
             onClick={() => invalidateCertificate()}
+            disabled={!rollups}
           >
+            {loading && (
+              <FontAwesomeIcon
+                icon={faSpinner}
+                spin
+                className="mr-2"
+              />
+            )}
             Inactivate Certificate
           </button>
         </div>
 
         <Toast message="Text copied!" show={showToast} />
-
       </GraphQLProvider>
-
     </div>
   );
 };

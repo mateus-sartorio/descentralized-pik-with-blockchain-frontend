@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ethers } from "ethers";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { getDaysDifference } from "../../utils/dates";
 import selfsigned from 'selfsigned';
 import { useRollups } from "../../useRollups";
@@ -13,9 +15,10 @@ export interface InputProps {
 export const Input: React.FC<InputProps> = (props) => {
   const { dappAddress } = props;
 
-
   const rollups = useRollups(dappAddress);
   const [connectedWallet] = useWallets();
+
+  const [loading, setLoading] = useState(false);
 
   const provider = new ethers.providers.Web3Provider(connectedWallet.provider);
 
@@ -25,6 +28,8 @@ export const Input: React.FC<InputProps> = (props) => {
   const [notAfter, setNotAfter] = useState("");
 
   const addInput = async () => {
+    setLoading(true);
+
     const attrs = [
       { name: 'commonName', value: commonName },
       { name: 'countryName', value: countryName },
@@ -34,17 +39,12 @@ export const Input: React.FC<InputProps> = (props) => {
     const notAfterDate = notAfter ? new Date(`${notAfter}T00:00:00`) : new Date();
     const daysUntilExpiration = getDaysDifference(notAfterDate, new Date());
 
-    console.log(notBefore, notAfter)
-    console.log(notBeforeDate, notAfterDate, daysUntilExpiration);
-
     const { cert } = selfsigned.generate(attrs, {
       keySize: 2048, // the size for the private key in bits (default: 1024)
       days: daysUntilExpiration, // how long till expiry of the signed certificate (default: 365)
       notBeforeDate: notBeforeDate, // The date before which the certificate should not be valid (default: now)
       algorithm: 'sha256', // sign the certificate with specified algorithm (default: 'sha1')
     });
-
-    console.log(cert);
 
     const input = {
       action: "create",
@@ -64,12 +64,14 @@ export const Input: React.FC<InputProps> = (props) => {
         console.log(`${e}`);
       }
     }
+
+    setLoading(false);
   };
 
   return (
     <>
       <h2 className="text-2xl font-semibold text-gray-800 text-center mb-6 mt-10">Create New X509 Certificate</h2>
-      
+
       <div className="flex flex-col max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg space-y-4">
         <div className="space-y-2">
           <label htmlFor="commom-name" className="block text-sm font-medium text-gray-700">Commom name</label>
@@ -103,7 +105,7 @@ export const Input: React.FC<InputProps> = (props) => {
             <option value="JP">Japan</option>
             <option value="IN">India</option>
           </select>
-        </div>  
+        </div>
 
         <div className="space-y-2">
           <label htmlFor="not-before" className="block text-sm font-medium text-gray-700">Not Before</label>
@@ -130,8 +132,18 @@ export const Input: React.FC<InputProps> = (props) => {
         <button
           onClick={() => addInput()}
           disabled={!rollups}
-          className={`mt-4 px-4 py-2 rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed`}
+          className={`relative mt-4 px-4 py-2 rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed
+        transform transition-all duration-300 ease-in-out
+        ${loading ? "scale-90" : "scale-100"}
+      `}
         >
+          {loading && (
+            <FontAwesomeIcon
+              icon={faSpinner}
+              spin
+              className="mr-2"
+            />
+          )}
           Send
         </button>
       </div>

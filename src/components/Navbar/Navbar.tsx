@@ -22,7 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageName, toggleSidebar }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const userName = wallet?.accounts.map(a => a.address)[0];
+  const connectedWalletAddress = wallet?.accounts.map(a => a.address)[0];
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -50,7 +50,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageName, toggleSidebar }) => {
         <span className="text-xl font-bold">{pageName}</span>
       </div>
       <div className="flex items-center cursor-pointer" onClick={handleDropdownToggle} ref={dropdownRef}>
-        <span className="mr-4">{userName}</span>
+        <span className="mr-4">{connectedWalletAddress}</span>
         <FontAwesomeIcon icon={faUser} />
 
         {isDropdownOpen && (
