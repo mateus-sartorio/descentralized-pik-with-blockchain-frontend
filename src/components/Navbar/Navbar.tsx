@@ -22,7 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageName, toggleSidebar }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const userName = "Mateus";
+  const userName = wallet?.accounts.map(a => a.address)[0];
 
   const handleDropdownToggle = () => {
     setIsDropdownOpen(!isDropdownOpen);
