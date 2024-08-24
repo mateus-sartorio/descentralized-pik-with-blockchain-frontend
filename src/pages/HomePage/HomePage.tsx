@@ -11,36 +11,28 @@ import { hexToString } from "../../utils/hex";
 import { useNavigate } from "react-router-dom";
 
 function cleanCertificate(cert: string): string {
-  // Replace all escaped \\r\\n sequences with actual new line characters
   return cert.replace(/\\r\\n/g, '\n').replace(/\n/g, '\n');
 }
 
 function decodeX509Certificate(pemCert: string) {
-  // Remove the "BEGIN CERTIFICATE" and "END CERTIFICATE" lines
   const base64Cert = pemCert
     .replace(/-----BEGIN CERTIFICATE-----/g, '')
     .replace(/-----END CERTIFICATE-----/g, '')
-    .replace(/\s+/g, ''); // Remove all whitespaces
+    .replace(/\s+/g, '');
 
-  // Decode the base64 certificate
   const rawCert = Buffer.from(base64Cert, 'base64');
 
-  // Parse the ASN.1 structure from the raw certificate
   const asn1 = fromBER(rawCert.buffer);
   if (asn1.offset === -1) {
     throw new Error("Unable to parse ASN.1 data");
   }
 
-  // Convert to PKIjs Certificate object
   const certificate = new Certificate({ schema: asn1.result });
 
-  // Extract the public key from the certificate
   const publicKeyInfo = certificate.subjectPublicKeyInfo;
 
-  // Convert the public key to a PEM-encoded string
   const publicKeyPem = `-----BEGIN PUBLIC KEY-----\n${Buffer.from(publicKeyInfo.toSchema().toBER(false)).toString('base64').match(/.{1,64}/g)?.join('\n')}\n-----END PUBLIC KEY-----`;
 
-  // Now, you can access the decoded certificate information
   const certInfo = {
     serialNumber: certificate.serialNumber.valueBlock.valueHex,
     issuer: certificate.issuer.typesAndValues.map(t => ({
@@ -53,7 +45,7 @@ function decodeX509Certificate(pemCert: string) {
     })),
     validFrom: certificate.notBefore.value.toISOString(),
     validTo: certificate.notAfter.value.toISOString(),
-    publicKey: publicKeyPem // Include the public key
+    publicKey: publicKeyPem
   };
 
   return certInfo;
@@ -82,8 +74,6 @@ const HomePage: React.FC = () => {
           rawCertificate: c
         }
       });
-
-      console.log(certificatesObject)
 
       setData(certificatesObject ?? []);
     }

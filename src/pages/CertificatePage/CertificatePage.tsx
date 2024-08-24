@@ -131,10 +131,10 @@ const CertificatePage: React.FC = () => {
         <div className="mt-4 text-right">
           <button
             className={`bg-red-500 text-white py-2 px-4 rounded-lg shadow-md hover:bg-red-600
-        focus:outline-none focus:ring-2 focus:ring-red-500 disabled:bg-gray-400 disabled:cursor-not-allowed
-        transform transition-all duration-300 ease-in-out
-        ${loading ? "scale-90" : "scale-100"}
-      `}
+              focus:outline-none focus:ring-2 focus:ring-red-500 disabled:bg-gray-400 disabled:cursor-not-allowed
+              transform transition-all duration-300 ease-in-out
+              ${loading ? "scale-90" : "scale-100"}
+            `}
             onClick={() => invalidateCertificate()}
             disabled={!rollups}
           >

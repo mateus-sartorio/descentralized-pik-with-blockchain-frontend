@@ -1,57 +1,117 @@
-# Certificate Hub Front End
+<p align="center"><img align="center" width="50%" src="assets/login.png"/></p>
 
+<br>
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=nodejs,typescript,react,tailwind" /> <br/>
+  <a href="https://github.com/mateus-sartorio/descentralized-pik-with-blockchain-frontend"><kbd>🔵 GitHub</kbd></a>
+</p>
+
+# 🪪 Certificate Hub (Front End)
+
+### Decentralized certificates.
+
+<br/>
+
+## 🔥 Features
+
+### 📜 Create new certificates in a descentralized way
+
+<div align="center">
+  <img src="assets/create.png" alt="Create new certificates in a descentralized way" width="50%"/>
+</div>
+
+### 📜🔍 View created certificates
+
+<div align="center">
+  <img src="assets/view.png" alt="View created certificates" width="50%"/>
+</div>
+
+<br>
+
+## 🍄 Philosophy
+
+This project is intended to be simple and easy to use. The functionalities are kept minimal but refined.
+
+<br/>
+
+## ⚙️ Configurar e executar localmente
+
+### Prerequisites:
+
+- Backend dApp running ([Setup Instructions](https://github.com/mateus-sartorio/descentralized-pik-with-blockchain-backend))
+- Metamask test wallet on browser ([Setup Instructions](https://github.com/mateus-sartorio/descentralized-pik-with-blockchain-backend))
+- Node.js 18 or above ([Instalation instructions](https://nodejs.org))
+- Yarn ([Instalation instructions](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable))
+
+Before starting, make sure you have all the prerequisites to run the project.
+
+To check the Node.js version installed on your machine, run the following command:
+
+```bash
+node --version
 ```
-Cartesi Rollups version: 1.0.x
+
+> [!TIP]
+> If your Node.js version is not 18 or above, it is recommended to use `nvm`, which allows you to install and manage multiple versions of Node.js on your machine.
+> [repository with installation instructions](https://github.com/nvm-sh/nvm)
+
+
+After installing Node.js, install Yarn package manager:
+
+```bash
+npm install --global yarn
 ```
 
-## Features
 
-With this project you can test some interactions with the Cartesi Rollups project:
+### Running the application
 
-1. Metamask integration
-2. Send Inspect state Requests and Listing Reports response
-3. Sending Dapp Address with the DApp Relay
-4. Sending inputs
-5. Depositing Ether
-6. Depositing ERC20
-7. Depositing ERC721
-8. Depositing ERC1155 Single
-9. Depositing ERC1155 Batch
-10. Listing Notices
-11. Listing Reports
-12. Listing Vouchers
-13. Executing Vouchers
+Clone the repository locally. Then, navigate to the directory of the cloned repository:
 
-## Configurtion
-
-Edit src/config.json to set the testnet parameters and deployment, inspect, graphql, rpc addresses.
-
-## Available Scripts
+```bash
+git clone https://github.com/mateus-sartorio/descentralized-pik-with-blockchain-frontend
+cd corenotes
+```
 
 In the project directory, run:
 
-```shell
+```bash
 yarn
-yarn codegen
-```
-
-to build the app.
-
-```shell
 yarn start
 ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+It everything went well, you are running the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Voucher Notes
+<br/>
 
-To execute Vouchers, the voucher epoch must be finalized so the rollups framework generate the proofs.
-As a reminder, you can advance time in hardhat with the command:
 
-```shell
-curl --data '{"id":1337,"jsonrpc":"2.0","method":"evm_increaseTime","params":[864010]}' http://localhost:8545
-```
+## ⚠️ Limitations
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lynoferraz/frontend-web-cartesi)
+- When changing the dApp address in the settings page, the Front End continues to use the default address. This happens because the address configuration page and the input submission page are separate, and to share state between two pages in React, you need to set up a Redux store, which hasn't been done in the project.
 
+
+## 🐞 Known bugs
+
+- Sometimes the reference to the MetaMask wallet is lost in the application (for unknown reasons), and the user needs to log out and log back in to continue.
+
+- Sometimes, when logging out, an error is returned, and the user needs to navigate to the / route to log in again.
+
+<br/>
+
+## ⚖️ License:
+
+Copyright Universidade Federal do Espirito Santo (Ufes)
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+This program is released under license GNU GPL v3+ license.
+
+
+## 🛟 Support:
+
+Please report any issues with the application at [github.com/mateus-sartorio/descentralized-pik-with-blockchain-frontend](https://github.com/mateus-sartorio/descentralized-pik-with-blockchain-frontend).
