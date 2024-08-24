@@ -44,7 +44,7 @@ This project is intended to be simple and easy to use. The functionalities are k
 - Node.js 18 or above ([Instalation instructions](https://nodejs.org))
 - Yarn ([Instalation instructions](https://classic.yarnpkg.com/lang/en/docs/install/#debian-stable))
 
-Before starting, make sure you have all the prerequisites to run the project.
+Before starting, make sure you have all the requirements to run the project.
 
 To check the Node.js version installed on your machine, run the following command:
 
