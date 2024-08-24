@@ -37,7 +37,7 @@ This project is intended to be simple and easy to use. The functionalities are k
 
 ## ⚙️ Configure and run locally
 
-### Prerequisites:
+### Requirements:
 
 - Backend dApp running ([Setup Instructions](https://github.com/mateus-sartorio/descentralized-pik-with-blockchain-backend))
 - Metamask test wallet on browser ([Setup Instructions](https://github.com/mateus-sartorio/descentralized-pik-with-blockchain-backend))
