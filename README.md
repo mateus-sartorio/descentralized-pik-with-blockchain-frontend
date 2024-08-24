@@ -102,7 +102,7 @@ If everything went well, you are now running the app in the development mode. Op
 
 ## ⚖️ License:
 
-Copyright Universidade Federal do Espirito Santo (Ufes)
+Copyright Universidade Federal do Espirito Santo (UFES)
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
