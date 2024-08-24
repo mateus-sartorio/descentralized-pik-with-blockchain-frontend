@@ -54,7 +54,8 @@ node --version
 
 > [!TIP]
 > If your Node.js version is not 18 or above, it is recommended to use `nvm`, which allows you to install and manage multiple versions of Node.js on your machine.
-> [repository with installation instructions](https://github.com/nvm-sh/nvm)
+>
+> [Repository with installation instructions](https://github.com/nvm-sh/nvm)
 
 
 After installing Node.js, install Yarn package manager:
@@ -69,8 +70,8 @@ npm install --global yarn
 Clone the repository locally. Then, navigate to the directory of the cloned repository:
 
 ```bash
-git clone https://github.com/mateus-sartorio/descentralized-pik-with-blockchain-frontend
-cd corenotes
+git clone https://github.com/mateus-sartorio/descentralized-pik-with-blockchain-frontend frontend
+cd frontend
 ```
 
 In the project directory, run:
@@ -80,7 +81,7 @@ yarn
 yarn start
 ```
 
-It everything went well, you are running the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+If everything went well, you are now running the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 <br/>
 
@@ -94,7 +95,7 @@ It everything went well, you are running the app in the development mode. Open [
 
 - Sometimes the reference to the MetaMask wallet is lost in the application (for unknown reasons), and the user needs to log out and log back in to continue.
 
-- Sometimes, when logging out, an error is returned, and the user needs to navigate to the / route to log in again.
+- Sometimes, when logging out, an error is thrown, and the user needs to navigate to the `/` route to log in again.
 
 <br/>
 
