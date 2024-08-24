@@ -35,7 +35,7 @@ This project is intended to be simple and easy to use. The functionalities are k
 
 <br/>
 
-## ⚙️ Configurar e executar localmente
+## ⚙️ Configure and run locally
 
 ### Prerequisites:
 
